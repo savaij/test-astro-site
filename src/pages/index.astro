@@ -1,6 +1,8 @@
 ---
 import Base from "../layouts/Base.astro";
+import ArticleCard from "../components/ArticleCard.astro";
 import { site } from "../content/site";
+import { articles } from "../content/articles";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -18,24 +20,13 @@ const jsonLd = {
   jsonLd={jsonLd}
 >
   <article class="prose">
-    <h1>{site.tagline}</h1>
-    <p class="lead">{site.description}</p>
-
-    <section class="block">
-      <h2>What this is</h2>
-      <p>
-        Astro Baseline is a boring starter: clear structure, SEO defaults, and minimal CSS.
-        No UI kit. No framework runtime.
-      </p>
-    </section>
-
-    <section class="block">
-      <h2>Next steps</h2>
-      <ul>
-        <li>Customize <code>src/content/site.ts</code></li>
-        <li>Adjust tokens in <code>src/styles/partials/tokens.css</code></li>
-        <li>Add your pages and components</li>
-      </ul>
-    </section>
+    <h1>Perché l'elefante?</h1>
+    <p class="lead">{site.elephant}</p>
   </article>
+
+  <div class="article-grid">
+    {articles.map((article) => (
+      <ArticleCard article={article} />
+    ))}
+  </div>
 </Base>

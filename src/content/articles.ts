@@ -1,0 +1,49 @@
+import type { ImageMetadata } from "astro";
+import italiaPerPochi from "../assets/articles/italia-per-pochi.png";
+
+export type Article = {
+  number: number;
+  title: string;
+  description: string;
+  href: string;
+  published: boolean;
+  image?: ImageMetadata;
+  imageAlt?: string;
+};
+
+export const articles: Article[] = [
+  {
+    number: 1,
+    title: "Italia per pochi.",
+    description:
+      "Ognuno dei 100 punti in movimento rappresenta l'1% della popolazione italiana. Un viaggio interattivo per scoprire chi detiene il 100% della ricchezza.",
+    href: "articoli/1",
+    published: true,
+    image: italiaPerPochi,
+    imageAlt: "Grafico con 100 punti che rappresentano la popolazione italiana",
+  },
+  {
+    number: 2,
+    title: "Integrazione, davvero?",
+    description:
+      "Tutti parlano di accoglienza, ma chi se ne occupa sul territorio? Una mappatura dei centri di aiuto mostra una geografia fortemente disuguale.",
+    href: "articoli/2",
+    published: true,
+  },
+  {
+    number: 3,
+    title: "Eletti e lontani.",
+    description:
+      "Le liste bloccate alla Camera dei Deputati hanno reciso il legame con i territori. Scopri quanti parlamentari vengono paracadutati.",
+    href: "articoli/3",
+    published: true,
+  },
+  {
+    number: 4,
+    title: "In lavorazione...",
+    description:
+      "Nuovi dati e indagini sulle disuguaglianze strutturali in Italia sono in fase di elaborazione. Resta sintonizzato.",
+    href: "#",
+    published: false,
+  },
+];

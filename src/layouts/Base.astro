@@ -15,7 +15,7 @@ const {
   ogImage = site.seo.ogImage,
   robots = site.seo.robots,
   jsonLd,
-  mainCentered = false
+  mainCentered = true
 } = Astro.props;
 const CF_TOKEN = "XXX";
 const canonical = new URL(canonicalPath, site.url).toString();
@@ -37,6 +37,22 @@ const canonical = new URL(canonicalPath, site.url).toString();
       jsonLd={jsonLd}
     />
     <Cloudfare token={CF_TOKEN} />
+    <style set:html={`
+      @font-face {
+        font-family: "Inter";
+        src: url("${import.meta.env.BASE_URL}fonts/InterVariable.woff2") format("woff2");
+        font-weight: 100 900;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: "Inter";
+        src: url("${import.meta.env.BASE_URL}fonts/InterVariable-Italic.woff2") format("woff2");
+        font-weight: 100 900;
+        font-style: italic;
+        font-display: swap;
+      }
+    `} />
   </head>
 
   <body class="page">

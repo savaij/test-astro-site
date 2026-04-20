@@ -1,0 +1,39 @@
+---
+import { Image } from "astro:assets";
+import type { Article } from "../content/articles";
+
+interface Props {
+  article: Article;
+}
+
+const { article } = Astro.props;
+const href = `${import.meta.env.BASE_URL}/${article.href}`;
+---
+
+{article.published ? (
+  <a href={href} class="article-card article-card--published">
+    <span class="article-card__number">Numero {article.number}</span>
+    <h3 class="article-card__title">{article.title}</h3>
+    {article.image ? (
+      <Image
+        src={article.image}
+        alt={article.imageAlt ?? ""}
+        class="article-card__img"
+        width={400}
+        height={180}
+      />
+    ) : (
+      <div class="article-card__visual" aria-hidden="true"></div>
+    )}
+    <p class="article-card__desc">{article.description}</p>
+  </a>
+) : (
+  <div class="article-card article-card--draft">
+    <span class="article-card__number">Numero {article.number}</span>
+    <h3 class="article-card__title">{article.title}</h3>
+    <div class="article-card__visual article-card__visual--draft" aria-hidden="true">
+      <span class="article-card__soon">Prossimamente</span>
+    </div>
+    <p class="article-card__desc">{article.description}</p>
+  </div>
+)}

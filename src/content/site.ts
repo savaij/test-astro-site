@@ -8,6 +8,7 @@ export type SiteConfig = {
   name: string;
   tagline: string;
   description: string;
+  elephant: string;
   url: string;            
   locale: string;
   author: {
@@ -15,9 +16,7 @@ export type SiteConfig = {
     email?: string;
     url?: string;
     socials?: {
-      x?: string;
-      github?: string;
-      linkedin?: string;
+      instagram?: string;
     };
   };
   nav: SiteNavItem[];
@@ -29,27 +28,26 @@ export type SiteConfig = {
 };
 
 export const site: SiteConfig = {
-  name: "Astro Baseline",
-  tagline: "A boring, production-ready Astro starter.",
+  name: "Elefanti, il primo test!",
+  tagline: "Un sito di prova, usando il framework Astro (non so che sto facendo)",
   description:
-    "Astro Baseline is a minimal HTML-first starter with senior defaults: SEO, JSON-LD, a11y basics, and clean structure.",
-  url: import.meta.env.SITE_URL ?? "https://example.com",
-  locale: "en",
+    "Astro ci permette di creare siti web statici con più facilità rispetto a un html tradizionale. Poi possiamo usare anche Javascript e cose simili per visualizzazioni dinamiche e fichissime.",
+  elephant: "La curva Milanovic (o \"curva dell'elefante\") è un grafico elaborato dall'economista Branko Milanovicvic che illustra la distribuzione della crescita del reddito globale tra il 1988 e il 2008. Mostra che i maggiori beneficiari della globalizzazione sono stati la classe media asiatica e l'1% più ricco, mentre la classe media dei paesi occidentali ha subito una stagnazione dei redditi",
+  url: import.meta.env.SITE_URL ?? "https://savaij.github.io/test-astro-site",
+  locale: "it",
   author: {
-    name: "Your Name",
+    name: "Elefanti",
     email: "hello@example.com",
     url: "https://example.com",
     socials: {
-      x: "https://x.com/yourhandle",
-      github: "https://github.com/yourhandle",
-      linkedin: "https://www.linkedin.com/in/yourhandle/"
+      instagram: "https://instagram.com/elefanti"
     }
   },
   nav: [
     { label: "Home", href: "/" },
-    { label: "About", href: "/about" },
-    { label: "Contact", href: "/contact" },
-    { label: "Legal", href: "/legal" }
+    { label: "Chi siamo noi?", href: "/about" },
+    { label: "Contatti", href: "/contact" },
+    { label: "Legale", href: "/legal" }
   ],
   seo: {
     ogImage: "/images/og/og-default.jpg",
