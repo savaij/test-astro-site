@@ -13,15 +13,22 @@ const jsonLd = {
 };
 ---
 
+
 <Base
   title={site.name}
   description={site.description}
   canonicalPath="/"
   jsonLd={jsonLd}
+  mainCentered={false}
 >
   <article class="prose">
     <h1>Perché l'elefante?</h1>
     <p class="lead">{site.elephant}</p>
+  </article>
+
+  <article class="prose">
+    <h1>Perché sbilanciate?</h1>
+    <p class="lead">{site.sbilanciati}</p>
   </article>
 
   <div class="article-grid">

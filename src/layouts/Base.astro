@@ -15,7 +15,7 @@ const {
   ogImage = site.seo.ogImage,
   robots = site.seo.robots,
   jsonLd,
-  mainCentered = true
+  mainCentered = false
 } = Astro.props;
 const CF_TOKEN = "XXX";
 const canonical = new URL(canonicalPath, site.url).toString();

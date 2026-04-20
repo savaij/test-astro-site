@@ -9,6 +9,7 @@ export type SiteConfig = {
   tagline: string;
   description: string;
   elephant: string;
+  sbilanciati: string;
   url: string;            
   locale: string;
   author: {
@@ -28,11 +29,12 @@ export type SiteConfig = {
 };
 
 export const site: SiteConfig = {
-  name: "Elefanti, il primo test!",
+  name: "Elefanti / Sbilanciate, il primo test!",
   tagline: "Un sito di prova, usando il framework Astro (non so che sto facendo)",
   description:
     "Astro ci permette di creare siti web statici con più facilità rispetto a un html tradizionale. Poi possiamo usare anche Javascript e cose simili per visualizzazioni dinamiche e fichissime.",
   elephant: "La curva Milanovic (o \"curva dell'elefante\") è un grafico elaborato dall'economista Branko Milanovicvic che illustra la distribuzione della crescita del reddito globale tra il 1988 e il 2008. Mostra che i maggiori beneficiari della globalizzazione sono stati la classe media asiatica e l'1% più ricco, mentre la classe media dei paesi occidentali ha subito una stagnazione dei redditi",
+  sbilanciati: "Siamo anche un po' matt3.",
   url: import.meta.env.SITE_URL ?? "https://savaij.github.io/test-astro-site",
   locale: "it",
   author: {
