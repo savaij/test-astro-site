@@ -10,9 +10,10 @@ const { article } = Astro.props;
 const href = `${import.meta.env.BASE_URL}/${article.href}`;
 ---
 
-{article.published ? (
+{article.published && (
   <a href={href} class="article-card article-card--published">
     <span class="article-card__number">Numero {article.number}</span>
+    <span class="article-card__date">{article.publishedAt?.toLocaleDateString("it-IT", { day: "2-digit", month: "2-digit", year: "numeric" })}</span>
     <h3 class="article-card__title">{article.title}</h3>
     {article.image ? (
       <Image
@@ -27,13 +28,4 @@ const href = `${import.meta.env.BASE_URL}/${article.href}`;
     )}
     <p class="article-card__desc">{article.description}</p>
   </a>
-) : (
-  <div class="article-card article-card--draft">
-    <span class="article-card__number">Numero {article.number}</span>
-    <h3 class="article-card__title">{article.title}</h3>
-    <div class="article-card__visual article-card__visual--draft" aria-hidden="true">
-      <span class="article-card__soon">Prossimamente</span>
-    </div>
-    <p class="article-card__desc">{article.description}</p>
-  </div>
 )}

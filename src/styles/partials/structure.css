@@ -163,16 +163,20 @@ main {
   color: var(--muted);
 }
 
-.article-card--draft {
-  background: #fbfbfd;
-  opacity: 0.6;
-  border-color: rgba(0, 0, 0, 0.08);
-}
-
 /* Card internals */
 .article-card__number {
   font-size: 11px;
   font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  display: block;
+  margin-bottom: 6px;
+}
+
+.article-card__date {
+  font-size: 11px;
+  font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: var(--muted);
@@ -188,9 +192,6 @@ main {
   transition: color 0.3s ease;
 }
 
-.article-card--draft .article-card__title {
-  color: var(--muted);
-}
 
 .article-card__img {
   width: 100%;
@@ -211,31 +212,6 @@ main {
   flex-shrink: 0;
 }
 
-.article-card__visual--draft {
-  border-style: dashed;
-  border-color: rgba(0, 0, 0, 0.15);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: repeating-linear-gradient(
-    45deg,
-    transparent,
-    transparent 10px,
-    rgba(0, 0, 0, 0.02) 10px,
-    rgba(0, 0, 0, 0.02) 20px
-  );
-}
-
-.article-card__soon {
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: #aaa;
-  background: #fbfbfd;
-  padding: 4px 10px;
-  border-radius: 6px;
-}
 
 .article-card__desc {
   font-size: 13px;

@@ -19,11 +19,18 @@ Questo progetto è basato su un tema Astro 5 minimale (HTML-first, no UI framewo
 ### Visualizzazioni interattive
 La regola "no runtime JS by default" del tema base viene **parzialmente superata** per ospitare visualizzazioni. Le linee guida sono:
 
-- I componenti di visualizzazione vivono in `src/components/charts/` o `src/components/viz/`
-- Usare librerie leggere: preferire **Observable Plot**, **D3.js** (solo moduli necessari), o vanilla JS su canvas/SVG
-- Ogni visualizzazione deve avere un fallback statico (`<noscript>` o immagine SVG) con i dati chiave
-- Caricare le librerie JS solo nelle pagine che le usano (import locale nel frontmatter o `<script>` scoped)
+- I componenti di visualizzazione vivono in `src/components/charts/`
+- Usare **D3.js v7** caricato da CDN via ESM (`import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm"`) in un `<script type="module">` nel componente
+- Non installare D3 come dipendenza npm; caricare dal CDN direttamente nel componente chart
+- Ogni visualizzazione deve avere un fallback `<noscript>` con tabella HTML dei dati chiave
 - Non installare framework UI (React, Vue, Svelte) salvo necessità eccezionale documentata
+
+#### Convenzioni per i componenti chart
+- Struttura: `<figure class="viz-figure">` → `<figcaption>` (titolo + nota) → `<div id="chart-*">` (target D3) → `<noscript><table>`
+- Naming: `Chart_[numero_articolo].[numero_chart].astro` (es. `Chart_1.1.astro`)
+- Tutti gli stili locali usano token CSS (`var(--bg)`, `var(--border)`, `var(--space-*)`, ecc.) — mai valori hardcoded
+- I grafici interattivi possono includere input utente (es. campo reddito) con `aria-live` per accessibilità
+- Tipi di grafici usati finora: linee multi-serie (D3 SVG), waffle/bubble chart a cerchi (SVG, ogni cerchio = % della popolazione)
 
 ## Commands
 
@@ -50,10 +57,14 @@ Set `SITE_URL` env var before building (defaults to `https://example.com`).
 
 ### Articoli
 
-Gli articoli sono definiti in `src/content/articles.ts`. Per aggiungerne uno:
+Gli articoli sono definiti in `src/content/articles.ts`. Il tipo `Article` include: `number`, `title`, `description`, `href`, `published`, e i campi opzionali `image` (ImageMetadata), `imageAlt`, `publishedAt` (Date).
+
+Per aggiungerne uno:
 1. Aggiungi un oggetto all'array `articles` con `published: false`
 2. Crea la pagina in `src/pages/articoli/[numero].astro`
-3. Imposta `published: true` quando è pronto
+3. Imposta `published: true` e aggiungi `publishedAt` quando è pronto
+
+Le immagini degli articoli vanno in `src/assets/articles/` (importate staticamente nel frontmatter di `articles.ts` per ottimizzazione Astro).
 
 La home page (`src/pages/index.astro`) mappa automaticamente l'array e renderizza le card in griglia (1→2→3 colonne). Gli stili del grid e delle card sono in `src/styles/partials/structure.css` sotto il commento `/* Article grid */`.
 

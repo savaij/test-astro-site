@@ -9,6 +9,7 @@ export type Article = {
   published: boolean;
   image?: ImageMetadata;
   imageAlt?: string;
+  publishedAt?: Date;
 };
 
 export const articles: Article[] = [
@@ -21,6 +22,7 @@ export const articles: Article[] = [
     published: true,
     image: italiaPerPochi,
     imageAlt: "Grafico con 100 punti che rappresentano la popolazione italiana",
+    publishedAt: new Date("2026-04-10"),
   },
   {
     number: 2,
@@ -29,6 +31,8 @@ export const articles: Article[] = [
       "Tutti parlano di accoglienza, ma chi se ne occupa sul territorio? Una mappatura dei centri di aiuto mostra una geografia fortemente disuguale.",
     href: "articoli/2",
     published: true,
+    publishedAt: new Date("2026-04-15"),
+
   },
   {
     number: 3,
@@ -37,6 +41,8 @@ export const articles: Article[] = [
       "Le liste bloccate alla Camera dei Deputati hanno reciso il legame con i territori. Scopri quanti parlamentari vengono paracadutati.",
     href: "articoli/3",
     published: true,
+    publishedAt: new Date("2026-04-21"),
+
   },
   {
     number: 4,
