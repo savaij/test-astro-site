@@ -1,0 +1,80 @@
+---
+// src/components/StreamingPlayer.astro
+interface Props {
+  _hlsSrc: string;
+  fallbackSrc?: string;
+  poster?: string;
+  title?: string;
+  maxHeight?: string;
+}
+
+const base_url = import.meta.env.BASE_URL
+
+const { _hlsSrc, fallbackSrc, poster, title = 'Video', maxHeight } = Astro.props;
+
+const hlsSrc = _hlsSrc.startsWith('http') ? _hlsSrc : `${base_url}/${_hlsSrc}`;
+---
+
+<div class="streaming-player" data-max-height={maxHeight}>
+  <video
+    id="streaming-video"
+    class="video-js vjs-default-skin vjs-big-play-centered"
+    controls
+    preload="auto"
+    poster={poster}
+  >
+    <!-- HLS source (Safari native, others via Video.js) -->
+    <source src={hlsSrc} type="application/x-mpegURL" />
+    <!-- Optional MP4 fallback for older browsers -->
+    {fallbackSrc && <source src={fallbackSrc} type="video/mp4" />}
+  </video>
+</div>
+
+<script>
+  import videojs from 'video.js';
+  import 'video.js/dist/video-js.css';
+
+  const videoElement = document.getElementById('streaming-video') as HTMLVideoElement;
+
+  if (videoElement) {
+    const player = videojs(videoElement, {
+      fluid: true,
+      html5: {
+        vhs: {
+          overrideNative: true, // Use Video.js HLS instead of native
+        },
+      },
+    });
+
+    player.on('loadedmetadata', () => {
+      console.log('Stream loaded:', player.currentSource());
+
+      const container = videoElement.closest('.streaming-player') as HTMLElement | null;
+      const maxHeight = container?.dataset.maxHeight;
+      if (maxHeight && container) {
+        const vw = player.videoWidth();
+        const vh = player.videoHeight();
+        if (vw && vh) {
+          container.style.maxWidth = `calc(${maxHeight} * ${vw / vh})`;
+          container.style.margin = '0 auto';
+        }
+      }
+    });
+
+    document.addEventListener('astro:before-swap', () => {
+      player.dispose();
+    });
+  }
+</script>
+
+<style>
+  .streaming-player {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .video-js {
+    width: 100%;
+     /* aspect-ratio: 16 / 9; */
+  }
+</style>

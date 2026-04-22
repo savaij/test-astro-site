@@ -1,0 +1,30 @@
+---
+import Base from "../../layouts/Base.astro";
+import { site } from "../../content/site";
+import StreamingPlayer from "../../components/StreamingPlayer.astro";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: site.name,
+  url: site.url,
+  inLanguage: site.locale
+};
+---
+
+<Base
+  title={site.name}
+  description={site.description}
+  canonicalPath="/"
+  jsonLd={jsonLd}>
+<article class="prose">
+  <h1>Articolo 2</h1>
+  <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent condimentum molestie auctor. Duis fermentum neque non purus condimentum, in ultricies massa tempus. Donec dictum egestas magna sed aliquet. Nam a dictum ante, sit amet pulvinar massa. Aenean tempus molestie mauris, quis interdum orci efficitur ut. Vivamus et nibh elit. Curabitur urna risus, facilisis ut urna quis, sollicitudin semper urna.</p>
+
+ <p>Ut feugiat quis mauris quis suscipit. In tellus odio, suscipit non cursus a, pharetra pretium arcu. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nullam in augue lorem. Fusce consectetur tempor ultrices. Pellentesque imperdiet, tortor id imperdiet dignissim, justo arcu dignissim risus, eu tincidunt libero tortor vitae metus. Nulla id iaculis dolor.</p>
+
+<p>Donec et ex rhoncus, molestie lorem at, aliquam urna. Nullam mattis accumsan felis, a elementum mauris sagittis sollicitudin. Aliquam mollis porta varius. Mauris ex risus, vestibulum at blandit non, feugiat in nisi. Nullam in leo sodales, tempor risus vitae, condimentum diam. Fusce bibendum at lectus eget bibendum. Sed tempus orci nunc, eget pretium massa vehicula quis. Vivamus vitae eros eu sapien aliquet porttitor commodo vel nibh. Quisque hendrerit nunc nec libero ultricies, ac vestibulum justo gravida. Fusce in euismod neque. Nunc ac ligula suscipit, auctor justo a.</p>
+
+  <StreamingPlayer _hlsSrc="/video/master.m3u8" maxHeight="20em"/>
+</article>
+</Base>
